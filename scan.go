@@ -1,6 +1,7 @@
 package desktop
 
 import (
+	"fmt"
 	"log"
 	"os"
 	"path/filepath"
@@ -68,6 +69,7 @@ func scanner(s *scan) {
 		entry, err = Parse(scanEntry.f, buf)
 		scanEntry.f.Close()
 		if err != nil {
+			fmt.Printf("scanner error %s\n", scanEntry.f.Name())
 			s.errs <- err
 			s.Done()
 			return
